@@ -10,12 +10,6 @@
 
 @media screen and (max-width: 880px) {
   .profile {
-    padding: 42px 27px 0;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .profile {
     flex-direction: column;
     padding: 42px 19px 0;
   }
