@@ -21,3 +21,13 @@
 @import url('../blocks/profile/__role/profile__role.css');
 @import url('../blocks/profile/__edit-button/profile__edit-button.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
+
+/* Elements */
+@import url('../blocks/elements/elements.css');
+
+/* element */
+@import url('../blocks/element/element.css');
+@import url('../blocks/element/__image/element__image.css');
+@import url('../blocks/element/__text-container/element__text-container.css');
+@import url('../blocks/element/__title/element__title.css');
+@import url('../blocks/element/__icon/element__icon.css');
