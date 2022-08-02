@@ -1,0 +1,9 @@
+.header__link {
+  align-self: flex-start;
+}
+
+@media screen and (max-width: 880px) {
+  .header__link {
+    padding-left: 27px;
+  }
+}

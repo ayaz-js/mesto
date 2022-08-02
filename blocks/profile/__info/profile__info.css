@@ -1,0 +1,16 @@
+.profile__info {
+  display: grid;
+  gap: 0 18px;
+  grid-template-areas:
+  'name edit-button'
+  'role role';
+  max-width: 500px;
+}
+
+@media screen and (max-width: 425px) {
+  .profile__info {
+    text-align: center;
+    margin: 22px 0 0;
+    gap: 0 10px;
+  }
+}

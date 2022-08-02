@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,33 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
-<body class="page">
 
+<body class="page">
+  <div class="page__container">
+
+    <!-- header -->
+    <header class="header">
+      <a href="#" class="header__link">
+        <img src="./images/logo.svg" alt="Логотип: Место" class="header__logo">
+      </a>
+    </header>
+
+    <main class="contnet">
+
+      <!-- profile -->
+      <section class="profile">
+        <img src="./images/avatar.png" alt="Аватар пользователя" class="profile__avatar">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__role">Исследователь океана</p>
+          <button type="button" class="profile__edit-button"></button>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+      </section>
+
+    </main>
+
+  </div>
 </body>
+
 </html>
