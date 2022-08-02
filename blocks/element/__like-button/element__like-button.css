@@ -3,4 +3,9 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  transition: opacity 0.3s ease-out;
+}
+
+.element__like-button:hover {
+  opacity: 0.5;
 }
