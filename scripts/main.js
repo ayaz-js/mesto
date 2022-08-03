@@ -6,7 +6,6 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 
 // closePopup buttons
 const closeProfileButton = document.querySelector('.form__close-button');
-const popupOverlay = document.querySelector('.popup__overlay');
 const formSaveButton = document.querySelector('.form__save-button');
 
 // profile
@@ -14,19 +13,21 @@ const profileName = document.querySelector('.profile__name');
 const profileRole = document.querySelector('.profile__role');
 
 // inputs
-const inputName = document.querySelector('.form__input-name');
-const inputRole = document.querySelector('.form__input-role');
+const formElement = document.querySelector('.form')
+const inputName = formElement.querySelector('.form__input_type_name');
+const inputRole = formElement.querySelector('.form__input_type_role');
 
 // Functions
-function getProfile() {
-  inputName.value = profileName.textContent;
-  inputRole.value = profileRole.textContent;
-}
-
-function editProfile() {
+function formSubmitHandler (event) {
+  event.preventDefault();
   profileName.textContent = inputName.value;
   profileRole.textContent = inputRole.value;
   closePopup()
+}
+
+function getProfile() {
+  inputName.value = profileName.textContent;
+  inputRole.value = profileRole.textContent;
 }
 
 function calcScrollWidth() {
@@ -54,7 +55,7 @@ function openPopup() {
 function closePopup() {
   popup.classList.remove('popup_opened');
   document.body.style.overflow = 'auto';
-  document.body.style.borderRight = `0px solid black`;
+  document.body.style.borderRight = ``;
   removeEventListeners();
 }
 
@@ -66,16 +67,14 @@ function closeOnEsc(event) {
 
 function addEventListeners() {
   closeProfileButton.addEventListener('click', closePopup);
-  popupOverlay.addEventListener('click', closePopup);
   document.addEventListener('keyup', closeOnEsc);
-  formSaveButton.addEventListener('click', editProfile)
+  formElement.addEventListener('submit', formSubmitHandler);
 }
 
 function removeEventListeners() {
   closeProfileButton.removeEventListener('click', closePopup);
-  popupOverlay.removeEventListener('click', closePopup);
   document.removeEventListener('keyup', closeOnEsc);
-  formSaveButton.removeEventListener('click', editProfile)
+  formElement.removeEventListener('submit', formSubmitHandler);
 }
 
 editProfileButton.addEventListener('click', openPopup);
