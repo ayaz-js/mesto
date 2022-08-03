@@ -36,3 +36,16 @@
 /* footer */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
+
+/* popup */
+@import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/__overlay/popup__overlay.css');
+@import url('../blocks/popup/__container/popup__container.css');
+
+/* form */
+@import url('../blocks/form/form.css');
+@import url('../blocks/form/__close-button/form__close-button.css');
+@import url('../blocks/form/__title/form__title.css');
+@import url('../blocks/form/__profile-edit/form__profile-edit.css');
+@import url('../blocks/form/__input/form__input.css');
+@import url('../blocks/form/__save-button/form__save-button.css');
