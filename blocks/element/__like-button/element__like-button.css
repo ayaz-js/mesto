@@ -3,6 +3,7 @@
   background-image: url('../../../images/heart.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
   border: none;
   padding: 0;
   cursor: pointer;

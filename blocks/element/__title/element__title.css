@@ -5,5 +5,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 240px;
+  width: 100%;
   margin: 0;
 }
