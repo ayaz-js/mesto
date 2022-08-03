@@ -1,17 +1,21 @@
-# Проект: Место
+# Яндекс.Практикум :mortar_board:
 
-### Обзор
+## Проектная работа №4 - "Mesto"
+Сайт делиться красивыми фотографиями мест в которых побывал фотограф.
 
-* Figma
-* Картинки
+### ссылка на github-pages https://ayaz-js.github.io/mesto/
 
-**Figma**
+#### Основной функционал
+* Редактирование профиля; :heavy_check_mark:
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+### Технологии
+* HTML5; :heavy_check_mark:
+* CSS3; :heavy_check_mark:
+* JavaScript (стандарт ES6); :heavy_check_mark:
+* Методология БЭМ; :heavy_check_mark:
+* Файловая структура проекта по правилам Nested; :heavy_check_mark:
+* Flexbox; :heavy_check_mark:
+* Grid; :heavy_check_mark:
+* Позиционирование; :heavy_check_mark:
+* Медиазапросы; :heavy_check_mark:
+* Псевдоклассы; :heavy_check_mark:
