@@ -46,7 +46,6 @@ function calcScrollWidth() {
 
 function openPopup() {
   popup.classList.add('popup_opened');
-  document.body.style.overflow = 'hidden';
   document.body.style.borderRight = `${calcScrollWidth()}px solid black`;
   getProfile()
   addEventListeners();
@@ -54,7 +53,6 @@ function openPopup() {
 
 function closePopup() {
   popup.classList.remove('popup_opened');
-  document.body.style.overflow = 'auto';
   document.body.style.borderRight = ``;
   removeEventListeners();
 }
