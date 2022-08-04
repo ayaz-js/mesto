@@ -53,12 +53,21 @@ function addEventListeners() {
   closeProfileButton.addEventListener('click', closePopup);
   document.addEventListener('keyup', closeOnEsc);
   formElement.addEventListener('submit', formSubmitHandler);
+  popup.addEventListener('click', closeOnOverlay);
 }
 
 function removeEventListeners() {
   closeProfileButton.removeEventListener('click', closePopup);
   document.removeEventListener('keyup', closeOnEsc);
   formElement.removeEventListener('submit', formSubmitHandler);
+  popup.removeEventListener('click', closeOnOverlay);
+}
+
+function closeOnOverlay(event) {
+  const target = event.target
+  if(target && target.classList.contains('popup_opened')) {
+    closePopup()
+  }
 }
 
 editProfileButton.addEventListener('click', openPopup);
