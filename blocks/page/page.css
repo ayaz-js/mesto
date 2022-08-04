@@ -7,4 +7,6 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+  margin-left: calc(100vw - 100%);
+  margin-right: 0;
 }
