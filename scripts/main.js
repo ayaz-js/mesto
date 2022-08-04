@@ -49,6 +49,13 @@ function closeOnEsc(event) {
   }
 }
 
+function closeOnOverlay(event) {
+  const target = event.target
+  if(target && target.classList.contains('popup_opened')) {
+    closePopup()
+  }
+}
+
 function addEventListeners() {
   closeProfileButton.addEventListener('click', closePopup);
   document.addEventListener('keyup', closeOnEsc);
@@ -61,13 +68,6 @@ function removeEventListeners() {
   document.removeEventListener('keyup', closeOnEsc);
   formElement.removeEventListener('submit', formSubmitHandler);
   popup.removeEventListener('click', closeOnOverlay);
-}
-
-function closeOnOverlay(event) {
-  const target = event.target
-  if(target && target.classList.contains('popup_opened')) {
-    closePopup()
-  }
 }
 
 editProfileButton.addEventListener('click', openPopup);
