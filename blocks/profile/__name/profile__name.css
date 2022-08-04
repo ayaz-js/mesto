@@ -7,7 +7,6 @@
   overflow: hidden;
   color: #fff;
   margin: 0;
-  grid-area: name;
 }
 
 @media screen and (max-width: 880px) {
