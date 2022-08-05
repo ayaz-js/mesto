@@ -17,12 +17,15 @@ const formElement = document.querySelector('.form')
 const inputName = formElement.querySelector('.form__input_type_name');
 const inputRole = formElement.querySelector('.form__input_type_role');
 
+// Elements
+const elements = document.querySelector('.elements');
+
 // Functions
 function formSubmitHandler (event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileRole.textContent = inputRole.value;
-  closePopup()
+  closePopup();
 }
 
 function getProfile() {
@@ -33,7 +36,7 @@ function getProfile() {
 function openPopup() {
   popup.classList.add('popup_opened');
   document.body.style.overflow = 'hidden';
-  getProfile()
+  getProfile();
   addEventListeners();
 }
 
@@ -52,7 +55,7 @@ function closeOnEsc(event) {
 function closeOnOverlay(event) {
   const target = event.target
   if(target && target.classList.contains('popup_opened')) {
-    closePopup()
+    closePopup();
   }
 }
 
@@ -71,3 +74,11 @@ function removeEventListeners() {
 }
 
 editProfileButton.addEventListener('click', openPopup);
+
+elements.addEventListener('click', (event)=> {
+  const target = event.target;
+
+  if(target && target.classList.contains('element__like-button')) {
+    target.classList.toggle('element__like-button_active');
+  }
+})
