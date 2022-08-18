@@ -36,54 +36,7 @@
       <!-- elements -->
       <section class="elements">
 
-        <!-- element -->
-        <article class="element">
-          <img src="./images/karachaevsk.png" alt="Фотография: старого Сабора" class="element__image">
-          <div class="element__text-container">
-            <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__like-button"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img src="./images/elbrus.png" alt="Фотография: горы Эльбрус" class="element__image">
-          <div class="element__text-container">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like-button"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img src="./images/dombay.png" alt="Фотография: леса и горы" class="element__image">
-          <div class="element__text-container">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like-button"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img src="./images/karachaevsk.png" alt="Фотография: старого Сабора" class="element__image">
-          <div class="element__text-container">
-            <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__like-button"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img src="./images/elbrus.png" alt="Фотография: горы Эльбрус" class="element__image">
-          <div class="element__text-container">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like-button"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img src="./images/dombay.png" alt="Фотография: леса и горы" class="element__image">
-          <div class="element__text-container">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like-button"></button>
-          </div>
-        </article>
+        <!-- element render from JS -->
 
       </section>
 
@@ -108,6 +61,17 @@
     </div>
 
   </div>
+
+  <!-- card template -->
+  <template class="element__template">
+    <article class="element">
+      <img class="element__image">
+      <div class="element__text-container">
+        <h2 class="element__title"></h2>
+        <button type="button" class="element__like-button"></button>
+      </div>
+    </article>
+  </template>
 
   <script src="./scripts/index.js" defer></script>
 </body>
