@@ -1,23 +1,25 @@
 // popup
-const popup = document.querySelector('.popup');
+const editProfilePopup = document.querySelector('#edit-profile-popup');
+const addCardPopup = document.querySelector('#add-card-popup');
 
 // openPopup button
 const editProfileButton = document.querySelector('.profile__edit-button');
+const addCardButton = document.querySelector('.profile__add-button');
 
 // closePopup buttons
-const closeProfileButton = document.querySelector('.popup__close-button');
-const formSaveButton = document.querySelector('.form__save-button');
+const closeProfileButton = document.querySelector('.popup__close-button_popup_profile');
+const closeAddCardButton = document.querySelector('.popup__close-button_popup_add-card');
 
 // profile
 const profileName = document.querySelector('.profile__name');
 const profileRole = document.querySelector('.profile__role');
 
 // inputs
-const formElement = document.querySelector('.form')
+const formElement = document.querySelector('.form');
 const inputName = formElement.querySelector('.form__input_type_name');
 const inputRole = formElement.querySelector('.form__input_type_role');
 
-// Elements
+// elements
 const elements = document.querySelector('.elements');
 
 // card array
@@ -53,7 +55,7 @@ function formSubmitHandler (event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileRole.textContent = inputRole.value;
-  closePopup();
+  closePopup(editProfilePopup);
 }
 
 function getProfile() {
@@ -61,44 +63,40 @@ function getProfile() {
   inputRole.value = profileRole.textContent;
 }
 
-function openPopup() {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.body.style.overflow = 'hidden';
   getProfile();
   addEventListeners();
 }
 
-function closePopup() {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.body.style.overflow = 'auto';
   removeEventListeners();
 }
 
-function closeOnEsc(event) {
-  if (event.key === 'Escape' || event.key === 'Esc') {
-      closePopup();
-  }
-}
-
 function closeOnOverlay(event) {
   const target = event.target
   if(target && target.classList.contains('popup_opened')) {
-    closePopup();
+    closePopup(target);
   }
 }
 
 function addEventListeners() {
-  closeProfileButton.addEventListener('click', closePopup);
-  document.addEventListener('keyup', closeOnEsc);
+  closeProfileButton.addEventListener('click', () => closePopup(editProfilePopup));
+  closeAddCardButton.addEventListener('click', () => closePopup(addCardPopup));
+  editProfilePopup.addEventListener('click', closeOnOverlay);
+  addCardPopup.addEventListener('click', closeOnOverlay);
   formElement.addEventListener('submit', formSubmitHandler);
-  popup.addEventListener('click', closeOnOverlay);
 }
 
 function removeEventListeners() {
-  closeProfileButton.removeEventListener('click', closePopup);
-  document.removeEventListener('keyup', closeOnEsc);
+  closeProfileButton.removeEventListener('click', () => closePopup(editProfilePopup));
+  closeAddCardButton.removeEventListener('click', () => closePopup(addCardPopup));
+  editProfilePopup.removeEventListener('click', closeOnOverlay);
+  addCardPopup.removeEventListener('click', closeOnOverlay);
   formElement.removeEventListener('submit', formSubmitHandler);
-  popup.removeEventListener('click', closeOnOverlay);
 }
 
 function renderCard(image, title) {
@@ -112,14 +110,15 @@ function renderCard(image, title) {
   cardImage.alt = `Фотография: ${title}`
   cardTitle.textContent = title;
 
-  elements.append(cardElement);
+  return cardElement;
 }
 
-initialCards.forEach(item => renderCard(item.link, item.name));
+initialCards.forEach(item => elements.append(renderCard(item.link, item.name)));
 
-editProfileButton.addEventListener('click', openPopup);
+editProfileButton.addEventListener('click', () => openPopup(editProfilePopup));
+addCardButton.addEventListener('click', () => openPopup(addCardPopup));
 
-elements.addEventListener('click', (event)=> {
+elements.addEventListener('click', (event) => {
   const target = event.target;
 
   if(target && target.classList.contains('element__like-button')) {
