@@ -1,6 +1,7 @@
 // popup
 const editProfilePopup = document.querySelector('#edit-profile-popup');
 const addCardPopup = document.querySelector('#add-card-popup');
+const imagePopup = document.querySelector('#image-popup');
 
 // openPopup button
 const editProfileButton = document.querySelector('.profile__edit-button');
@@ -9,6 +10,7 @@ const addCardButton = document.querySelector('.profile__add-button');
 // closePopup buttons
 const closeProfileButton = document.querySelector('.popup__close-button_popup_profile');
 const closeAddCardButton = document.querySelector('.popup__close-button_popup_add-card');
+const closeImageButton = document.querySelector('.popup__close-button_popup_image');
 
 // profile
 const profileName = document.querySelector('.profile__name');
@@ -65,13 +67,7 @@ function formSubmitHandler (event) {
 function formSubmitAddCard (event) {
   event.preventDefault();
 
-  const cardObject = {
-    name: inputTitle.value,
-    link: inputLink.value
-  }
-
-  const newCard = renderCard(cardObject);
-  initialCards.push(cardObject);
+  const newCard = renderCard(inputLink.value, inputTitle.value);
   event.target.reset();
   elements.prepend(newCard);
 
@@ -106,8 +102,12 @@ function closeOnOverlay(event) {
 function addEventListeners() {
   closeProfileButton.addEventListener('click', () => closePopup(editProfilePopup));
   closeAddCardButton.addEventListener('click', () => closePopup(addCardPopup));
+  closeImageButton.addEventListener('click', () => closePopup(imagePopup));
+
   editProfilePopup.addEventListener('click', closeOnOverlay);
   addCardPopup.addEventListener('click', closeOnOverlay);
+  imagePopup.addEventListener('click', closeOnOverlay);
+
   formElementEditProfile.addEventListener('submit', formSubmitHandler);
   formElementAddCard.addEventListener('submit', formSubmitAddCard);
 }
@@ -115,13 +115,17 @@ function addEventListeners() {
 function removeEventListeners() {
   closeProfileButton.removeEventListener('click', () => closePopup(editProfilePopup));
   closeAddCardButton.removeEventListener('click', () => closePopup(addCardPopup));
+  closeImageButton.removeEventListener('click', () => closePopup(imagePopup));
+
   editProfilePopup.removeEventListener('click', closeOnOverlay);
   addCardPopup.removeEventListener('click', closeOnOverlay);
+  imagePopup.removeEventListener('click', closeOnOverlay);
+
   formElementEditProfile.removeEventListener('submit', formSubmitHandler);
   formElementAddCard.removeEventListener('submit', formSubmitAddCard);
 }
 
-function renderCard({ link, name }) {
+function renderCard(name, link) {
   const cardTemplate = document.querySelector('.element__template').content;
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 
@@ -129,21 +133,40 @@ function renderCard({ link, name }) {
   const cardTitle = cardElement.querySelector('.element__title');
 
   cardImage.src = link;
-  cardImage.alt = `Фотография: ${name}`
+  cardImage.alt = `Фотография: ${name}`;
   cardTitle.textContent = name;
+
+  cardImage.addEventListener('click', () => {
+    openImagePopup(name, link);
+  });
 
   return cardElement;
 }
 
-initialCards.forEach(item => elements.append(renderCard(item)));
+function openImagePopup(name, link) {
+  const image = document.querySelector('.popup__image');
+  const imageCaption = document.querySelector('.popup__image-caption');
+
+  image.src = link;
+  image.alt = `Фотография: ${name}`;
+  imageCaption.textContent = name;
+  openPopup(imagePopup);
+}
+
+initialCards.forEach(item => elements.append(renderCard(item.name, item.link)));
 
 editProfileButton.addEventListener('click', () => openPopup(editProfilePopup));
 addCardButton.addEventListener('click', () => openPopup(addCardPopup));
 
 elements.addEventListener('click', (event) => {
   const target = event.target;
+  const element = document.querySelector('.element');
+
+  if(target && target.classList.contains('element__remove-button')) {
+    element.remove();
+  }
 
   if(target && target.classList.contains('element__like-button')) {
     target.classList.toggle('element__like-button_active');
   }
-})
+});
