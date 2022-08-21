@@ -65,13 +65,7 @@ function formSubmitHandler (event) {
 function formSubmitAddCard (event) {
   event.preventDefault();
 
-  const cardObject = {
-    name: inputTitle.value,
-    link: inputLink.value
-  }
-
-  const newCard = renderCard(cardObject);
-  initialCards.push(cardObject);
+  const newCard = renderCard(inputLink.value, inputTitle.value);
   event.target.reset();
   elements.prepend(newCard);
 
@@ -121,7 +115,7 @@ function removeEventListeners() {
   formElementAddCard.removeEventListener('submit', formSubmitAddCard);
 }
 
-function renderCard({ link, name }) {
+function renderCard(name, link) {
   const cardTemplate = document.querySelector('.element__template').content;
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 
@@ -129,16 +123,25 @@ function renderCard({ link, name }) {
   const cardTitle = cardElement.querySelector('.element__title');
 
   cardImage.src = link;
-  cardImage.alt = `Фотография: ${name}`
+  cardImage.alt = `Фотография: ${name}`;
   cardTitle.textContent = name;
 
   return cardElement;
 }
 
-initialCards.forEach(item => elements.append(renderCard(item)));
+initialCards.forEach(item => elements.append(renderCard(item.name, item.link)));
 
 editProfileButton.addEventListener('click', () => openPopup(editProfilePopup));
 addCardButton.addEventListener('click', () => openPopup(addCardPopup));
+
+elements.addEventListener('click', (event) => {
+  const target = event.target;
+  const element = document.querySelector('.element');
+
+  if(target && target.classList.contains('element__remove-button')) {
+    element.remove();
+  }
+});
 
 elements.addEventListener('click', (event) => {
   const target = event.target;
@@ -146,4 +149,4 @@ elements.addEventListener('click', (event) => {
   if(target && target.classList.contains('element__like-button')) {
     target.classList.toggle('element__like-button_active');
   }
-})
+});
