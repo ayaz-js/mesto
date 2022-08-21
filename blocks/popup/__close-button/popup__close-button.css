@@ -6,6 +6,7 @@
   background-image: url('../../../images/close-icon.svg');
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   width: 32px;
   height: 32px;
   border: none;
