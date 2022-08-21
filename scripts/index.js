@@ -67,7 +67,7 @@ function formSubmitHandler (event) {
 function formSubmitAddCard (event) {
   event.preventDefault();
 
-  const newCard = renderCard(inputLink.value, inputTitle.value);
+  const newCard = renderCard(inputTitle.value, inputLink.value);
   event.target.reset();
   elements.prepend(newCard);
 
