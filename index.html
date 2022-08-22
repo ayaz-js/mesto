@@ -50,7 +50,7 @@
     <!-- profile popup -->
     <div class="popup" id="edit-profile-popup">
       <div class="popup__container">
-        <button type="button" class="popup__close-button popup__close-button_popup_profile"></button>
+        <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="form" name="edit-profile">
           <input name="name" type="text" placeholder="Имя" class="form__input form__input_type_name">
@@ -63,11 +63,11 @@
     <!-- add-card popup -->
     <div class="popup" id="add-card-popup">
       <div class="popup__container">
-        <button type="button" class="popup__close-button popup__close-button_popup_add-card"></button>
+        <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="form" name="add-card">
           <input name="title" type="text" placeholder="Название" class="form__input form__input_type_title">
-          <input name="link" type="text" placeholder="Ссылка на картинку" class="form__input form__input_type_link">
+          <input name="link" type="text" placeholder="Ссылка на картинку" class="form__input form__input_type_url">
           <button type="submit" class="form__save-button">Сохранить</button>
         </form>
       </div>
@@ -76,7 +76,7 @@
     <!-- image popup -->
     <div class="popup popup_theme_dark" id="image-popup">
       <div class="popup__container popup__container_type_image">
-        <button type="button" class="popup__close-button popup__close-button_popup_image"></button>
+        <button type="button" class="popup__close-button"></button>
         <img class="popup__image">
         <p class="popup__image-caption"></p>
       </div>
@@ -96,6 +96,7 @@
     </article>
   </template>
 
+  <script src="scripts/cards.js" defer></script>
   <script src="./scripts/index.js" defer></script>
 </body>
 
