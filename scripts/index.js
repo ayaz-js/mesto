@@ -89,6 +89,9 @@ function createCard({ name, link }) {
   const cardImage = cardElement.querySelector('.element__image');
   const cardTitle = cardElement.querySelector('.element__title');
 
+  const cardLikeButton = cardElement.querySelector('.element__like-button');
+  const cardDeleteButton = cardElement.querySelector('.element__remove-button');
+
   cardImage.src = link;
   cardImage.alt = `Фотография: ${name}`;
   cardTitle.textContent = name;
@@ -97,17 +100,8 @@ function createCard({ name, link }) {
     openImagePopup(name, link);
   });
 
-  cardElement.addEventListener('click', (event) => {
-    const target = event.target;
-
-    if(target.classList.contains('element__remove-button')) {
-      cardElement.remove();
-    }
-
-    if(target.classList.contains('element__like-button')) {
-      target.classList.toggle('element__like-button_active');
-    }
-  });
+  cardLikeButton.addEventListener('click', () => cardLikeButton.classList.toggle('element__like-button_active'));
+  cardDeleteButton.addEventListener('click', () => cardElement.remove());
 
   return cardElement;
 }
