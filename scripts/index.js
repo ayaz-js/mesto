@@ -117,5 +117,4 @@ initialCards.forEach(item => cardsContainer.append(createCard(item)));
 addCardButton.addEventListener('click', () => openPopup(addCardPopup));
 editProfileButton.addEventListener('click', openProfilePopup);
 
-openProfilePopup();
 addEventListeners();
