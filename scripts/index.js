@@ -54,7 +54,7 @@ function addCard (event) {
 function openProfilePopup() {
   inputName.value = profileName.textContent;
   inputRole.value = profileRole.textContent;
-  editProfileButton.addEventListener('click', () => openPopup(profilePopup));
+  openPopup(profilePopup);
 }
 
 function openPopup(popup) {
@@ -121,6 +121,7 @@ function openImagePopup(name, link) {
 
 initialCards.forEach(item => cardsContainer.append(createCard(item)));
 addCardButton.addEventListener('click', () => openPopup(addCardPopup));
+editProfileButton.addEventListener('click', openProfilePopup);
 
 openProfilePopup();
 addEventListeners();
