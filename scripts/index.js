@@ -29,14 +29,14 @@ const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.element__template').content;
 
 // functions
-function formSubmitProfile (event) {
+function editProfile (event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileRole.textContent = inputRole.value;
   closePopup(profilePopup);
 }
 
-function formSubmitAddCard (event) {
+function addCard (event) {
   event.preventDefault();
 
   const cardData = {
@@ -79,8 +79,8 @@ function closeOnClick() {
 
 function addEventListeners() {
   closeOnClick();
-  formElementEditProfile.addEventListener('submit', formSubmitProfile);
-  formElementAddCard.addEventListener('submit', formSubmitAddCard);
+  formElementEditProfile.addEventListener('submit', editProfile);
+  formElementAddCard.addEventListener('submit', addCard);
 }
 
 function createCard({ name, link }) {
