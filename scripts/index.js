@@ -60,6 +60,7 @@ function openProfilePopup() {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.body.style.overflow = 'hidden';
+  addEventListeners();
 }
 
 function closePopup(popup) {
@@ -116,5 +117,3 @@ function openImagePopup(name, link) {
 initialCards.forEach(item => cardsContainer.append(createCard(item)));
 addCardButton.addEventListener('click', () => openPopup(addCardPopup));
 editProfileButton.addEventListener('click', openProfilePopup);
-
-addEventListeners();
