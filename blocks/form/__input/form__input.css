@@ -1,13 +1,8 @@
 .form__input {
   width: 100%;
   border: 0;
-  margin: 0 0 30px;
   padding: 0 0 13px;
   background-color: transparent;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
-}
-
-.form__input:last-of-type {
-  margin: 0;
 }

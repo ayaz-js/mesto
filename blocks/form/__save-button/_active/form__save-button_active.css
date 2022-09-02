@@ -1,0 +1,11 @@
+.form__save-button_active {
+  background-color: #000;
+  color: #fff;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  cursor: pointer;
+}
+
+.form__save-button_active:hover {
+  opacity: 0.8;
+}
