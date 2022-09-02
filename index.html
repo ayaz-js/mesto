@@ -56,16 +56,16 @@
       <form class="form" name="edit-profile" novalidate>
 
         <label class="form__field">
-          <input name="name" type="text" placeholder="Имя" id="name-input" class="form__input form__input_type_name">
+          <input name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" id="name-input" class="form__input form__input_type_name" required>
           <span class="name-input-error form__input-error"></span>
         </label>
 
         <label class="form__field">
-          <input name="role" type="text" placeholder="Деятельность" id="role-input" class="form__input form__input_type_role">
+          <input name="role" type="text" placeholder="Деятельность" minlength="2" maxlength="200" id="role-input" class="form__input form__input_type_role" required>
           <span class="role-input-error form__input-error"></span>
         </label>
 
-        <button type="submit" class="form__save-button">Сохранить</button>
+        <button type="submit" disabled class="form__save-button">Сохранить</button>
       </form>
 
     </div>
@@ -80,16 +80,16 @@
       <form class="form" name="add-card" novalidate>
 
         <label class="form__field">
-          <input name="title" type="text" placeholder="Название" id="title-input" class="form__input form__input_type_title">
+          <input name="title" type="text" placeholder="Название" minlength="2" maxlength="30" id="title-input" class="form__input form__input_type_title" required>
           <span class="title-input-error form__input-error"></span>
         </label>
 
         <label class="form__field">
-          <input name="link" type="text" placeholder="Ссылка на картинку" id="link-input" class="form__input form__input_type_url">
+          <input name="link" type="url" placeholder="Ссылка на картинку" id="link-input" class="form__input form__input_type_url" required>
           <span class="link-input-error form__input-error"></span>
         </label>
 
-        <button type="submit" class="form__save-button">Сохранить</button>
+        <button type="submit" disabled class="form__save-button">Сохранить</button>
       </form>
 
     </div>
