@@ -1,4 +1,5 @@
 .form__field {
+  display: block;
   margin: 0 0 30px;
 }
 

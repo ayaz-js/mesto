@@ -51,9 +51,11 @@
 
 /* form */
 @import url('../blocks/form/form.css');
+@import url('../blocks/form/__set/form__set.css');
 @import url('../blocks/form/__input/form__input.css');
 @import url('../blocks/form/__field/form__field.css');
 @import url('../blocks/form/__input-error/form__input-error.css');
+@import url('../blocks/form/__input-error/_active/form__input-error_active.css');
 @import url('../blocks/form/__input/_type/form__input_type_error.css');
 @import url('../blocks/form/__save-button/form__save-button.css');
 @import url('../blocks/form/__save-button/_active/form__save-button_active.css');
