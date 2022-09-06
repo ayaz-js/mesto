@@ -29,14 +29,14 @@ const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.element__template').content;
 
 // functions
-function editProfile (event) {
+function editProfile(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileRole.textContent = inputRole.value;
   closePopup(profilePopup);
 }
 
-function addCard (event) {
+function addCard(event) {
   event.preventDefault();
 
   const cardData = {
@@ -66,10 +66,11 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.body.style.overflow = 'auto';
+  removeEventListeners();
 }
 
 function closeOnClick() {
-  popups.forEach( popup => {
+  popups.forEach(popup => {
     popup.addEventListener('mousedown', (event) => {
       if (event.target === event.currentTarget || event.target.classList.contains('popup__close-button')) {
         closePopup(popup);
@@ -78,13 +79,26 @@ function closeOnClick() {
   });
 }
 
+function closeOnEsc(event) {
+  const popup = document.querySelector('.popup_opened');
+  if ((event.key === 'Escape' || event.key === 'Esc') && popup) {
+    closePopup(popup);
+  }
+}
+
 function addEventListeners() {
   closeOnClick();
+  document.addEventListener('keyup', closeOnEsc);
   formElementEditProfile.addEventListener('submit', editProfile);
   formElementAddCard.addEventListener('submit', addCard);
 }
 
-function createCard({ name, link }) {
+function removeEventListeners() {
+  document.removeEventListener('keyup', closeOnEsc);
+}
+
+
+function createCard({name, link}) {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 
   const cardImage = cardElement.querySelector('.element__image');
