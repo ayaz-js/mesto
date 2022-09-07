@@ -60,6 +60,7 @@ function openProfilePopup() {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.body.style.overflow = 'hidden';
+  resetValidation(popup);
   addEventListeners();
 }
 

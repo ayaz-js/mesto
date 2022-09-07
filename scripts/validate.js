@@ -61,13 +61,25 @@ const enableValidation = ( {formSelector, ...args} ) => {
 
   });
 
+  return function (formElement) {
+    const { inputSelector, submitButtonSelector, activeSubmitButtonSelector } = args;
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+    const buttonElement = formElement.querySelector(submitButtonSelector);
+
+    inputList.forEach(inputElement => hideInputError(formElement, inputElement, args));
+
+    toggleButtonState(inputList, buttonElement, activeSubmitButtonSelector);
+  };
+
 }
 
-enableValidation({
+const config = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__save-button',
   activeSubmitButtonSelector: 'form__save-button_active',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
-});
+}
+
+const resetValidation = enableValidation(config);
