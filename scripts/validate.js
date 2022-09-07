@@ -47,7 +47,7 @@ const setInputVlidation = (formElement, { inputSelector, submitButtonSelector, a
   });
 }
 
-const enableValidation = ( {formSelector, ...args} ) => {
+const enableValidation = ( {formSelector, formFieldSelector, ...args} ) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
 
   formList.forEach(formElement => {
@@ -55,7 +55,7 @@ const enableValidation = ( {formSelector, ...args} ) => {
       event.preventDefault();
     });
 
-    const fieldSet = Array.from(formElement.querySelectorAll('.form__set'));
+    const fieldSet = Array.from(formElement.querySelectorAll(formFieldSelector));
 
     fieldSet.forEach(fieldSet => setInputVlidation(fieldSet, args));
 
@@ -75,6 +75,7 @@ const enableValidation = ( {formSelector, ...args} ) => {
 
 const config = {
   formSelector: '.form',
+  formFieldSelector: '.form__set',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__save-button',
   activeSubmitButtonSelector: 'form__save-button_active',
