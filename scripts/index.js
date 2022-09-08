@@ -8,8 +8,8 @@ const image = document.querySelector('.popup__image');
 const imageCaption = document.querySelector('.popup__image-caption');
 
 // openPopup button
-const editProfileButton = document.querySelector('.profile__edit-button');
-const addCardButton = document.querySelector('.profile__add-button');
+const buttonEditProfile = document.querySelector('.profile__edit-button');
+const buttonAddCard = document.querySelector('.profile__add-button');
 
 // profile
 const profileName = document.querySelector('.profile__name');
@@ -135,5 +135,5 @@ function openImagePopup(name, link) {
 }
 
 initialCards.forEach(item => cardsContainer.append(createCard(item)));
-addCardButton.addEventListener('click', clickAddCardButton);
-editProfileButton.addEventListener('click', openProfilePopup);
+buttonAddCard.addEventListener('click', clickAddCardButton);
+buttonEditProfile.addEventListener('click', openProfilePopup);
