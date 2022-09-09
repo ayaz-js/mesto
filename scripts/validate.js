@@ -34,7 +34,7 @@ const checkInputValidity = (formElement, inputElement, validationConfig) => {
   }
 }
 
-const setInputVlidation = (formElement, { inputSelector, submitButtonSelector, activeSubmitButtonClass, ...args }) => {
+const setInputValidation = (formElement, { inputSelector, submitButtonSelector, activeSubmitButtonClass, ...args }) => {
   const buttonElement = formElement.querySelector(submitButtonSelector);
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   toggleButtonState(inputList, buttonElement, activeSubmitButtonClass);
@@ -51,7 +51,7 @@ const enableValidation = ( {formSelector, formFieldSelector, ...args} ) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
 
   formList.forEach(formElement => {
-    setInputVlidation(formElement, args);
+    setInputValidation(formElement, args);
 
     formElement.addEventListener('submit', (event) => {
       event.preventDefault();
