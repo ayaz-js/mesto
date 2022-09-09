@@ -2,13 +2,13 @@ const hasInvalidInput = (inputList) => {
   return inputList.some(inputElement => !inputElement.validity.valid);
 }
 
-const toggleButtonState = (inputList, buttonElement, activeSubmitButtonSelector) => {
+const toggleButtonState = (inputList, buttonElement, activeSubmitButtonClass) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
-    buttonElement.classList.remove(activeSubmitButtonSelector);
+    buttonElement.classList.remove(activeSubmitButtonClass);
   } else {
     buttonElement.disabled = false;
-    buttonElement.classList.add(activeSubmitButtonSelector);
+    buttonElement.classList.add(activeSubmitButtonClass);
   }
 }
 
@@ -34,15 +34,15 @@ const checkInputValidity = (formElement, inputElement, validationConfig) => {
   }
 }
 
-const setInputVlidation = (formElement, { inputSelector, submitButtonSelector, activeSubmitButtonSelector, ...args }) => {
+const setInputVlidation = (formElement, { inputSelector, submitButtonSelector, activeSubmitButtonClass, ...args }) => {
   const buttonElement = formElement.querySelector(submitButtonSelector);
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-  toggleButtonState(inputList, buttonElement, activeSubmitButtonSelector);
+  toggleButtonState(inputList, buttonElement, activeSubmitButtonClass);
 
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, args);
-      toggleButtonState(inputList, buttonElement, activeSubmitButtonSelector);
+      toggleButtonState(inputList, buttonElement, activeSubmitButtonClass);
     });
   });
 }
@@ -51,34 +51,30 @@ const enableValidation = ( {formSelector, formFieldSelector, ...args} ) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
 
   formList.forEach(formElement => {
+    setInputVlidation(formElement, args);
+
     formElement.addEventListener('submit', (event) => {
       event.preventDefault();
     });
-
-    const fieldSet = Array.from(formElement.querySelectorAll(formFieldSelector));
-
-    fieldSet.forEach(fieldSet => setInputVlidation(fieldSet, args));
-
   });
 
   return function (formElement) {
-    const { inputSelector, submitButtonSelector, activeSubmitButtonSelector } = args;
+    const { inputSelector, submitButtonSelector, activeSubmitButtonClass } = args;
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
 
     inputList.forEach(inputElement => hideInputError(formElement, inputElement, args));
 
-    toggleButtonState(inputList, buttonElement, activeSubmitButtonSelector);
+    toggleButtonState(inputList, buttonElement, activeSubmitButtonClass);
   };
 
 }
 
 const config = {
   formSelector: '.form',
-  formFieldSelector: '.form__set',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__save-button',
-  activeSubmitButtonSelector: 'form__save-button_active',
+  activeSubmitButtonClass: 'form__save-button_active',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 }
