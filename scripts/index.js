@@ -43,9 +43,6 @@ const config = {
 const formAddValidator = new FormValidator(config, formElementAddCard);
 const formEditValidator = new FormValidator(config, formElementEditProfile);
 
-formAddValidator.enableValidation();
-formEditValidator.enableValidation();
-
 // functions
 function editProfile(event) {
   event.preventDefault();
@@ -138,3 +135,6 @@ function openImagePopup(name, link) {
 initialCards.forEach(item => cardsContainer.append(createCard(item)));
 buttonAddCard.addEventListener('click', clickAddCardButton);
 buttonEditProfile.addEventListener('click', openProfilePopup);
+
+formAddValidator.enableValidation();
+formEditValidator.enableValidation();
