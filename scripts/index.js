@@ -1,3 +1,7 @@
+import { initialCards } from './cards.js';
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
 // popup
 const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('#edit-profile-popup');
@@ -26,7 +30,21 @@ const inputLink = formElementAddCard.querySelector('.form__input_type_url');
 
 // cards
 const cardsContainer = document.querySelector('.elements');
-const cardTemplate = document.querySelector('.template').content;
+
+const config = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save-button',
+  activeSubmitButtonClass: 'form__save-button_active',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}
+
+const formAddValidator = new FormValidator(config, formElementAddCard);
+const formEditValidator = new FormValidator(config, formElementEditProfile);
+
+formAddValidator.enableValidation();
+formEditValidator.enableValidation();
 
 // functions
 function editProfile(event) {
@@ -54,12 +72,12 @@ function addCard(event) {
 function openProfilePopup() {
   inputName.value = profileName.textContent;
   inputRole.value = profileRole.textContent;
-  resetValidation(profilePopup);
+  formEditValidator.resetValidation();
   openPopup(profilePopup);
 }
 
 function clickAddCardButton() {
-  resetValidation(popupAddCard);
+  formAddValidator.resetValidation();
   openPopup(popupAddCard)
 }
 
@@ -105,26 +123,9 @@ function deleteEventListeners() {
 
 
 function createCard({name, link}) {
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  const card = new Card({ name, link }, '.template', openImagePopup);
 
-  const cardImage = cardElement.querySelector('.element__image');
-  const cardTitle = cardElement.querySelector('.element__title');
-
-  const cardLikeButton = cardElement.querySelector('.element__like-button');
-  const cardDeleteButton = cardElement.querySelector('.element__remove-button');
-
-  cardImage.src = link;
-  cardImage.alt = `Фотография: ${name}`;
-  cardTitle.textContent = name;
-
-  cardImage.addEventListener('click', () => {
-    openImagePopup(name, link);
-  });
-
-  cardLikeButton.addEventListener('click', () => cardLikeButton.classList.toggle('element__like-button_active'));
-  cardDeleteButton.addEventListener('click', () => cardElement.remove());
-
-  return cardElement;
+  return card.generateCard();
 }
 
 function openImagePopup(name, link) {
