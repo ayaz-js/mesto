@@ -1,4 +1,4 @@
-export const config = {
+export const validationConfig = {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__save-button',
   activeSubmitButtonClass: 'form__save-button_active',

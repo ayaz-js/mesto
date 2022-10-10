@@ -9,42 +9,43 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
 import {
-  config,
+  validationConfig,
   buttonEditProfile,
   buttonAddCard,
 } from '../utils/constants.js';
 
 const userInfo = new UserInfo('.profile__name', '.profile__role');
 
-const editProfilePopup = new PopupWithForm('#edit-profile-popup', ({name, role}) => {
+const profilePopup = new PopupWithForm('#edit-profile-popup', ({name, role}) => {
   userInfo.setUserInfo({name, role});
 });
 
-const addCardPopup = new PopupWithForm('#add-card-popup', (values) => {
-    section.addItem(createCards(values))
+const cardPopup = new PopupWithForm('#add-card-popup', (values) => {
+  cardsSection.addItem(createCard(values))
   }
 );
 
 const popupWithImage = new PopupWithImage('#image-popup');
 
-function createCards({ name, link }) {
-  const card = new Card({ name, link },
+function createCard({ name, link }) {
+  const card = new Card(
+    { name, link },
     '.template',
     popupWithImage.open.bind(popupWithImage))
 
   return card.generateCard();
 }
 
-const section = new Section(
+const cardsSection = new Section(
   {
-    items: initialCards,
-    renderer: (item) => section.addItem(createCards(item)),
+    items: initialCards.reverse(),
+    renderer: (item) => cardsSection.addItem(createCard(item)),
   },
   '.elements'
 );
 
 function openProfilePopup() {
-  editProfilePopup.open();
+  profilePopup.open();
   const userInfoData = userInfo.getUserInfo();
 
   const {
@@ -52,7 +53,7 @@ function openProfilePopup() {
     role
   } = userInfoData
 
-  editProfilePopup.setInputValues({
+  profilePopup.setInputValues({
     name,
     role,
   });
@@ -60,29 +61,29 @@ function openProfilePopup() {
   formEditProfileValidator.resetValidation();
 }
 
-function addCard() {
-  addCardPopup.open();
+function openCardPopup() {
+  cardPopup.open();
   formAddCardValidator.resetValidation();
 }
 
 const formAddCardValidator = new FormValidator(
-  config,
-  addCardPopup.getFormElement()
+  validationConfig,
+  cardPopup.getFormElement()
 );
 
 const formEditProfileValidator = new FormValidator(
-  config,
-  editProfilePopup.getFormElement()
+  validationConfig,
+  profilePopup.getFormElement()
 );
 
-buttonAddCard.addEventListener('click', addCard);
+buttonAddCard.addEventListener('click', openCardPopup);
 buttonEditProfile.addEventListener('click', openProfilePopup);
 
 formAddCardValidator.enableValidation();
 formEditProfileValidator.enableValidation();
 
 popupWithImage.setEventListeners();
-editProfilePopup.setEventListeners();
-addCardPopup.setEventListeners();
+profilePopup.setEventListeners();
+cardPopup.setEventListeners();
 
-section.renderItems();
+cardsSection.renderItems();

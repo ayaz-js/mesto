@@ -13,16 +13,19 @@ export default class Card {
       .cloneNode(true);
   }
 
-  _clickCardImage() {
-    this._handleCardClick(this._name, this._link);
+  _handleClickCardImage() {
+    this._handleCardClick({
+      name: this._name,
+      link: this._link
+    });
   }
 
-  _clickLikeButton() {
+  _handleClickLikeButton() {
     this._cardLikeButton.classList.toggle('element__like-button_active');
   }
 
-  _deleteCard() {
-   this._cardElement.remove();
+  _handleDeleteCard() {
+    this._cardElement.remove();
   }
 
   _setEventListeners() {
@@ -31,15 +34,15 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector('.element__image');
 
     this._cardLikeButton.addEventListener('click', () =>
-      this._clickLikeButton()
+      this._handleClickLikeButton()
     );
 
     this._cardDeleteButton.addEventListener('click', () =>
-      this._deleteCard()
+      this._handleDeleteCard()
     );
 
     this._cardImage.addEventListener('click', () =>
-      this._clickCardImage()
+      this._handleClickCardImage()
     );
   }
 
