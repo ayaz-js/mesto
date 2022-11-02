@@ -1,7 +1,21 @@
 .profile__avatar {
-  border-radius: 50%;
-  max-width: 120px;
-  width: 100%;
+  position: relative;
+  width: 120px;
   height: 120px;
+  border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.profile__avatar:hover::before {
+  content: '';
+  position: absolute;
+  background-image: url('../../../images/edit-avatar.svg');
+  background-size: 26px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
