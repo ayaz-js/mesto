@@ -31,6 +31,14 @@ export default class Card {
     this._handleLikeClick(this._isLiked);
   }
 
+  _deleteButtonClick() {
+    const data = {
+      card: this._cardElement,
+      cardId: this._cardId,
+    };
+    this._handleRemoveCard(data);
+  }
+
   _setEventListeners() {
     this._cardLikeButton = this._cardElement.querySelector('.element__like-button');
     this._likeCountElement = this._cardElement.querySelector('.element__like-count');
@@ -82,13 +90,5 @@ export default class Card {
     this._cardLikeButton.classList.toggle('element__like-button_active');
     this._likeCountElement.textContent = count;
     this._isLiked = false;
-  }
-
-  _deleteButtonClick() {
-    const data = {
-      card: this._cardElement,
-      cardId: this._cardId,
-    };
-    this._handleRemoveCard(data);
   }
 }

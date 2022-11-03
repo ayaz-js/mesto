@@ -12,6 +12,7 @@ import renderLoading from "../utils/utils";
 
 import {
   validationConfig,
+  userInfoConfig,
   buttonEditProfile,
   buttonChangeAvatar,
   buttonAddCard,
@@ -46,14 +47,17 @@ let userId = null;
 
 const initialData = [api.getUserInfo(), api.getInitialCards()];
 
-const userInfo = new UserInfo('.profile__name', '.profile__role', '.profile__avatar-image');
+const userInfo = new UserInfo(userInfoConfig.profileName, userInfoConfig.profileRole, userInfoConfig.profileAvatar);
 
 // Попап редактирования профиля
 const profilePopup = new PopupWithForm('#edit-profile-popup', {
   submit: ({name, about}) => {
     renderLoading(true)
       api.editProfile({ name, about })
-      .then(({ name, about }) => userInfo.setUserInfo({ name, about }))
+      .then(({ name, about }) => {
+        userInfo.setUserInfo({ name, about });
+        profilePopup.close();
+      })
       .catch((error) => console.log(error))
       .finally(() => renderLoading(false))
     }
@@ -65,7 +69,10 @@ const avatarPopup = new PopupWithForm('#avatar-popup', {
   submit: (values) => {
     renderLoading(true)
     api.editAvatar({ avatar: values.link })
-      .then(userInfo.setAvatar(values.link))
+      .then(() => {
+        userInfo.setAvatar(values.link);
+        avatarPopup.close();
+      })
       .catch((error) => console.log(error))
       .finally(() => renderLoading(false))
     }
@@ -77,7 +84,10 @@ const cardPopup = new PopupWithForm('#add-card-popup', {
   submit: (values) => {
     renderLoading(true)
       api.addNewCard(values)
-      .then((data) => cardsSection.addItem(createCard(data)))
+      .then((data) => {
+        cardsSection.addItem(createCard(data))
+        cardPopup.close();
+      })
       .catch((error) => console.log(error))
       .finally(() => renderLoading(false))
     }

@@ -6,6 +6,12 @@ export const validationConfig = {
   errorClass: 'form__input-error_active'
 }
 
+export const userInfoConfig = {
+  profileName: '.profile__name',
+  profileRole: '.profile__role',
+  profileAvatar: '.profile__avatar-image'
+}
+
 export const buttonEditProfile = document.querySelector('.profile__edit-button');
 export const buttonAddCard = document.querySelector('.profile__add-button');
 export const buttonChangeAvatar = document.querySelector('.profile__avatar');
